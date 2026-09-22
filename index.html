@@ -215,10 +215,10 @@
   .listbar-wrap {
     position: relative;
   }
-  .theme-icon-btn {
+  .theme-icon-btn,
+  .settings-icon-btn {
     position: absolute;
     top: 8px;
-    right: 34px;
     width: 26px;
     height: 26px;
     padding: 0;
@@ -232,8 +232,12 @@
     border-radius: 6px;
     z-index: 2;
   }
-  .theme-icon-btn svg { width: 15px; height: 15px; }
-  .theme-icon-btn:active { background: var(--accent-weak); color: var(--accent); }
+  .theme-icon-btn { right: 34px; }
+  .settings-icon-btn { right: 64px; }
+  .theme-icon-btn svg,
+  .settings-icon-btn svg { width: 15px; height: 15px; }
+  .theme-icon-btn:active,
+  .settings-icon-btn:active { background: var(--accent-weak); color: var(--accent); }
 
   .theme-panel {
     display: none;
@@ -244,6 +248,18 @@
     padding: 12px 14px;
   }
   .theme-panel.show { display: block; }
+  .settings-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .settings-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0 0 10px;
+    line-height: 1.4;
+  }
   .theme-row {
     display: flex;
     align-items: center;
@@ -712,12 +728,13 @@
           <button id="confirmNewListBtn" class="createbtn">Create list</button>
         </div>
       </div>
-      <div class="backuprow">
-        <button class="backupbtn" id="backupBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> Backup</button>
-        <button class="backupbtn" id="restoreBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Restore</button>
-        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
-      </div>
     </details>
+    <button class="settings-icon-btn" id="settingsToggleBtn" aria-label="Backup and restore" title="Backup / Restore">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
     <button class="theme-icon-btn" id="themeToggleBtn" aria-label="Theme settings" title="Theme">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.8-.5-1.4 0-1.1.9-2 2-2h2.4c2.3 0 4.1-1.8 4.1-4.1C21.5 6 17.2 2 12 2z"></path>
@@ -727,6 +744,16 @@
         <circle cx="17.5" cy="11.5" r="1.2" fill="currentColor" stroke="none"></circle>
       </svg>
     </button>
+  </div>
+
+  <div class="theme-panel" id="settingsPanel">
+    <div class="settings-label">Backup &amp; Restore</div>
+    <p class="settings-hint">Your list already saves automatically on this device. This is just an optional copy you can keep or move to another device.</p>
+    <div class="backuprow">
+      <button class="backupbtn" id="backupBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> Backup</button>
+      <button class="backupbtn" id="restoreBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Restore</button>
+      <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
+    </div>
   </div>
 
   <div class="theme-panel" id="themePanel">
@@ -796,31 +823,6 @@
 
 <script>
   const STORAGE_KEY = 'todo-blank-template-v1';
-
-  let toastTimer = null;
-  function showToast(msg) {
-    const el = document.getElementById('toast');
-    if (!el) return;
-    el.textContent = msg;
-    el.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
-  }
-
-  const AUTO_BACKUP_KEY = 'todo-last-autobackup-ts';
-  const AUTO_BACKUP_INTERVAL_MS = 24 * 60 * 60 * 1000; // at most once a day, quietly
-
-  function maybeAutoBackup() {
-    try {
-      const last = parseInt(localStorage.getItem(AUTO_BACKUP_KEY) || '0', 10);
-      const now = Date.now();
-      if (now - last > AUTO_BACKUP_INTERVAL_MS) {
-        downloadBackup();
-        localStorage.setItem(AUTO_BACKUP_KEY, String(now));
-        showToast('Backed up to your device');
-      }
-    } catch (e) {}
-  }
 
   function todayStr() {
     const d = new Date();
@@ -919,7 +921,6 @@
     } catch (e) {
       console.error('local save failed', e);
     }
-    maybeAutoBackup();
     document.querySelectorAll('#embedded-state, script[id="embedded-state"]').forEach(n => n.remove());
     const el = document.createElement('script');
     el.type = 'application/json';
@@ -1849,7 +1850,12 @@
   document.getElementById('themeBg').addEventListener('input', (e) => setThemeColor('bg', e.target.value));
   document.getElementById('resetThemeBtn').addEventListener('click', resetTheme);
   document.getElementById('themeToggleBtn').addEventListener('click', () => {
+    document.getElementById('settingsPanel').classList.remove('show');
     document.getElementById('themePanel').classList.toggle('show');
+  });
+  document.getElementById('settingsToggleBtn').addEventListener('click', () => {
+    document.getElementById('themePanel').classList.remove('show');
+    document.getElementById('settingsPanel').classList.toggle('show');
   });
 
   document.getElementById('photoFileInput').addEventListener('change', handlePhotoFileChange);
