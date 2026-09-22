@@ -13,37 +13,29 @@
 <style>
   :root {
     --bg: #f7f5f2;
-    --card: #ffffff;
     --text: #1f1d1a;
-    --muted: #8a8580;
     --accent: #2f6f4f;
-    --accent-weak: #e4efe8;
-    --border: #e6e2dc;
+    --card: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
+    --muted: color-mix(in srgb, var(--text) 55%, var(--bg));
+    --accent-weak: color-mix(in srgb, var(--accent) 15%, var(--bg));
+    --border: color-mix(in srgb, var(--text) 12%, var(--bg));
     --danger: #b5493f;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+    :root:not([data-theme="light"]):not([data-custom-theme="true"]) {
       --bg: #17181a;
-      --card: #212327;
       --text: #f0eee9;
-      --muted: #8b8f96;
       --accent: #5fbf88;
-      --accent-weak: #1e2d25;
-      --border: #33363b;
       --danger: #e0685c;
     }
   }
-  :root[data-theme="dark"] {
+  :root[data-theme="dark"]:not([data-custom-theme="true"]) {
     --bg: #17181a;
-    --card: #212327;
     --text: #f0eee9;
-    --muted: #8b8f96;
     --accent: #5fbf88;
-    --accent-weak: #1e2d25;
-    --border: #33363b;
     --danger: #e0685c;
   }
   html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; -webkit-tap-highlight-color: transparent; }
@@ -122,6 +114,9 @@
     min-width: 40px;
     min-height: 40px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .listrow .iconbtn.danger { color: var(--danger); }
   .newlistbtn {
@@ -200,7 +195,12 @@
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
+  .backupbtn .icon { width: 14px; height: 14px; flex-shrink: 0; }
   .listrow .badge {
     font-size: 0.68rem;
     color: var(--muted);
@@ -210,6 +210,138 @@
     padding: 2px 6px;
     margin-right: 2px;
     flex-shrink: 0;
+  }
+
+  .listbar-wrap {
+    position: relative;
+  }
+  .theme-icon-btn {
+    position: absolute;
+    top: 8px;
+    right: 34px;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    z-index: 2;
+  }
+  .theme-icon-btn svg { width: 15px; height: 15px; }
+  .theme-icon-btn:active { background: var(--accent-weak); color: var(--accent); }
+
+  .theme-panel {
+    display: none;
+    margin: -8px 0 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .theme-panel.show { display: block; }
+  .theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .theme-row:last-of-type { border-bottom: none; }
+  .theme-row label { font-size: 0.92rem; color: var(--text); }
+  .theme-row input[type="color"] {
+    width: 44px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+    background: var(--card);
+    cursor: pointer;
+  }
+  .resetthemebtn {
+    margin-top: 10px;
+    width: 100%;
+    background: var(--bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .phototoggle {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.05rem;
+    cursor: pointer;
+    padding: 8px;
+    min-width: 38px;
+    min-height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .phototoggle svg { width: 17px; height: 17px; }
+  .phototoggle.has-photo { color: var(--accent); }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: env(safe-area-inset-top, 20px) 20px env(safe-area-inset-bottom, 20px);
+  }
+  .lightbox.show { display: flex; }
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 65vh;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    right: 16px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .lightbox-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .lightbox-actions button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    color: #1f1d1a;
+  }
+  .lightbox-actions button.danger {
+    background: #b5493f;
+    color: white;
   }
 
   h1 { font-size: 1.4rem; margin: 4px 0 14px; letter-spacing: -0.01em; }
@@ -319,6 +451,7 @@
     align-items: center;
     justify-content: center;
   }
+  .micbtn svg { width: 19px; height: 19px; }
   .micbtn.listening {
     background: #d64545 !important;
     border-color: #d64545 !important;
@@ -555,35 +688,62 @@
 </head>
 <body>
 <div class="wrap">
-  <details class="listbar" id="listSection">
-    <summary id="listSummary">My To-do</summary>
-    <div id="listItems"></div>
-    <button class="newlistbtn" id="newListBtn">+ New list</button>
-    <div class="newlistform" id="newListForm" style="display:none;">
-      <input type="text" id="newListNameInput" placeholder="List name" maxlength="60">
-      <div class="typechoice" id="typeChoice">
-        <button type="button" class="typebtn active" data-type="daily">
-          <span class="ticon">📅</span>
-          <span class="tname">Daily</span>
-          <span class="tsub">By date, rolls forward</span>
-        </button>
-        <button type="button" class="typebtn" data-type="project">
-          <span class="ticon">📋</span>
-          <span class="tname">Project</span>
-          <span class="tsub">Ongoing list, no dates</span>
-        </button>
+  <div class="listbar-wrap">
+    <details class="listbar" id="listSection">
+      <summary id="listSummary">My To-do</summary>
+      <div id="listItems"></div>
+      <button class="newlistbtn" id="newListBtn">+ New list</button>
+      <div class="newlistform" id="newListForm" style="display:none;">
+        <input type="text" id="newListNameInput" placeholder="List name" maxlength="60">
+        <div class="typechoice" id="typeChoice">
+          <button type="button" class="typebtn active" data-type="daily">
+            <span class="ticon">📅</span>
+            <span class="tname">Daily</span>
+            <span class="tsub">By date, rolls forward</span>
+          </button>
+          <button type="button" class="typebtn" data-type="project">
+            <span class="ticon">📋</span>
+            <span class="tname">Project</span>
+            <span class="tsub">Ongoing list, no dates</span>
+          </button>
+        </div>
+        <div class="formrow">
+          <button id="cancelNewListBtn" class="cancelbtn">Cancel</button>
+          <button id="confirmNewListBtn" class="createbtn">Create list</button>
+        </div>
       </div>
-      <div class="formrow">
-        <button id="cancelNewListBtn" class="cancelbtn">Cancel</button>
-        <button id="confirmNewListBtn" class="createbtn">Create list</button>
+      <div class="backuprow">
+        <button class="backupbtn" id="backupBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> Backup</button>
+        <button class="backupbtn" id="restoreBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Restore</button>
+        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
       </div>
+    </details>
+    <button class="theme-icon-btn" id="themeToggleBtn" aria-label="Theme settings" title="Theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.8-.5-1.4 0-1.1.9-2 2-2h2.4c2.3 0 4.1-1.8 4.1-4.1C21.5 6 17.2 2 12 2z"></path>
+        <circle cx="6.5" cy="11.5" r="1.2" fill="currentColor" stroke="none"></circle>
+        <circle cx="9.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"></circle>
+        <circle cx="14.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"></circle>
+        <circle cx="17.5" cy="11.5" r="1.2" fill="currentColor" stroke="none"></circle>
+      </svg>
+    </button>
+  </div>
+
+  <div class="theme-panel" id="themePanel">
+    <div class="theme-row">
+      <label for="themeAccent">Buttons</label>
+      <input type="color" id="themeAccent">
     </div>
-    <div class="backuprow">
-      <button class="backupbtn" id="backupBtn">📤 Backup</button>
-      <button class="backupbtn" id="restoreBtn">⬆ Restore</button>
-      <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
+    <div class="theme-row">
+      <label for="themeText">Text</label>
+      <input type="color" id="themeText">
     </div>
-  </details>
+    <div class="theme-row">
+      <label for="themeBg">Background</label>
+      <input type="color" id="themeBg">
+    </div>
+    <button class="resetthemebtn" id="resetThemeBtn">Reset to automatic (light/dark)</button>
+  </div>
 
   <div class="daynav">
     <button class="navbtn" id="prevDay" aria-label="Previous day">‹</button>
@@ -616,10 +776,20 @@
 
 <div class="toast" id="toast"></div>
 
+<input type="file" id="photoFileInput" accept="image/*" style="display:none;">
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+  <img id="lightboxImg" alt="Task photo">
+  <div class="lightbox-actions">
+    <button id="lightboxReplace">Replace photo</button>
+    <button id="lightboxRemove" class="danger">Remove photo</button>
+  </div>
+</div>
+
 <div class="addbar">
   <div class="addbar-inner">
     <input type="text" id="newTask" placeholder="Add a task for this day…" maxlength="200" enterkeyhint="done">
-    <button id="micBtn" class="micbtn" style="display:none;" aria-label="Add task by voice">🎤</button>
+    <button id="micBtn" class="micbtn" style="display:none;" aria-label="Add task by voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg></button>
     <button id="addBtn">Add</button>
   </div>
 </div>
@@ -765,6 +935,166 @@
     }
   }
 
+  function hexFromComputed(v) {
+    v = (v || '').trim();
+    if (v.startsWith('#')) return v;
+    const m = v.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (m) return '#' + [1, 2, 3].map(i => parseInt(m[i], 10).toString(16).padStart(2, '0')).join('');
+    return '#000000';
+  }
+
+  function applyTheme() {
+    const root = document.documentElement;
+    const theme = state.theme;
+    if (theme && (theme.accent || theme.text || theme.bg)) {
+      root.setAttribute('data-custom-theme', 'true');
+      if (theme.bg) root.style.setProperty('--bg', theme.bg); else root.style.removeProperty('--bg');
+      if (theme.text) root.style.setProperty('--text', theme.text); else root.style.removeProperty('--text');
+      if (theme.accent) root.style.setProperty('--accent', theme.accent); else root.style.removeProperty('--accent');
+    } else {
+      root.removeAttribute('data-custom-theme');
+      root.style.removeProperty('--bg');
+      root.style.removeProperty('--text');
+      root.style.removeProperty('--accent');
+    }
+  }
+
+  function syncThemeInputs() {
+    const cs = getComputedStyle(document.documentElement);
+    const accentEl = document.getElementById('themeAccent');
+    const textEl = document.getElementById('themeText');
+    const bgEl = document.getElementById('themeBg');
+    if (accentEl) accentEl.value = hexFromComputed(cs.getPropertyValue('--accent'));
+    if (textEl) textEl.value = hexFromComputed(cs.getPropertyValue('--text'));
+    if (bgEl) bgEl.value = hexFromComputed(cs.getPropertyValue('--bg'));
+  }
+
+  function setThemeColor(key, value) {
+    if (!state.theme) state.theme = {};
+    state.theme[key] = value;
+    applyTheme();
+    persist();
+  }
+
+  function resetTheme() {
+    state.theme = null;
+    applyTheme();
+    syncThemeInputs();
+    persist();
+  }
+
+  // --- Photo attachments (tasks and subtasks) ---
+  // Photos are downscaled and re-compressed before storing, since a raw
+  // iPhone photo (several MB) would blow past what localStorage can hold.
+  const CAMERA_ICON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>';
+  const IMAGE_ICON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>';
+
+  const PHOTO_MAX_DIM = 900;
+  const PHOTO_QUALITY = 0.68;
+
+  function compressImageFile(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          let { width, height } = img;
+          if (width > height && width > PHOTO_MAX_DIM) {
+            height = Math.round(height * (PHOTO_MAX_DIM / width));
+            width = PHOTO_MAX_DIM;
+          } else if (height >= width && height > PHOTO_MAX_DIM) {
+            width = Math.round(width * (PHOTO_MAX_DIM / height));
+            height = PHOTO_MAX_DIM;
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', PHOTO_QUALITY));
+        };
+        img.onerror = () => reject(new Error('Could not read that image'));
+        img.src = reader.result;
+      };
+      reader.onerror = () => reject(new Error('Could not read that file'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function findPhotoItem(taskId, subId) {
+    const tasks = getActiveTasks();
+    const t = tasks.find(x => x.id === taskId);
+    if (!t) return null;
+    if (subId) {
+      if (!t.subtasks) return null;
+      return t.subtasks.find(x => x.id === subId) || null;
+    }
+    return t;
+  }
+
+  let pendingPhotoTarget = null; // { taskId, subId }
+
+  function openPhotoPicker(taskId, subId) {
+    pendingPhotoTarget = { taskId, subId };
+    const input = document.getElementById('photoFileInput');
+    if (input) input.click();
+  }
+
+  function handlePhotoFileChange(e) {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!file || !pendingPhotoTarget) return;
+    const target = pendingPhotoTarget;
+    compressImageFile(file).then(dataUrl => {
+      const item = findPhotoItem(target.taskId, target.subId);
+      if (!item) return;
+      item.image = dataUrl;
+      render();
+      persist();
+    }).catch(err => {
+      alert(err.message || "Couldn't attach that photo.");
+    });
+  }
+
+  let lightboxTarget = null; // { taskId, subId }
+
+  function openLightbox(taskId, subId) {
+    const item = findPhotoItem(taskId, subId);
+    if (!item || !item.image) return;
+    lightboxTarget = { taskId, subId };
+    document.getElementById('lightboxImg').src = item.image;
+    document.getElementById('lightbox').classList.add('show');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('show');
+    lightboxTarget = null;
+  }
+
+  function removeLightboxPhoto() {
+    if (!lightboxTarget) return;
+    const item = findPhotoItem(lightboxTarget.taskId, lightboxTarget.subId);
+    if (item) delete item.image;
+    closeLightbox();
+    render();
+    persist();
+  }
+
+  function replaceLightboxPhoto() {
+    if (!lightboxTarget) return;
+    openPhotoPicker(lightboxTarget.taskId, lightboxTarget.subId);
+    closeLightbox();
+  }
+
+  function photoTapHandler(taskId, subId) {
+    const item = findPhotoItem(taskId, subId);
+    if (item && item.image) {
+      openLightbox(taskId, subId);
+    } else {
+      openPhotoPicker(taskId, subId);
+    }
+  }
+
   function getDayTasks(dateStr) {
     const list = currentList();
     if (!list.days[dateStr]) list.days[dateStr] = [];
@@ -895,6 +1225,13 @@
         });
         main.appendChild(addSubBtn);
 
+        const photoBtn = document.createElement('button');
+        photoBtn.className = 'phototoggle' + (item.image ? ' has-photo' : '');
+        photoBtn.innerHTML = item.image ? IMAGE_ICON_SVG : CAMERA_ICON_SVG;
+        photoBtn.setAttribute('aria-label', item.image ? 'View photo' : 'Add photo');
+        photoBtn.addEventListener('click', (e) => { e.stopPropagation(); photoTapHandler(item.id, null); });
+        main.appendChild(photoBtn);
+
         const del = document.createElement('button');
         del.className = 'delbtn';
         del.textContent = '×';
@@ -928,6 +1265,11 @@
               promote.setAttribute('aria-label', 'Make this a main task');
               promote.title = 'Make this a main task';
               promote.addEventListener('click', (e) => { e.stopPropagation(); promoteSubtask(item.id, sub.id); });
+              const subPhotoBtn = document.createElement('button');
+              subPhotoBtn.className = 'phototoggle' + (sub.image ? ' has-photo' : '');
+              subPhotoBtn.innerHTML = sub.image ? IMAGE_ICON_SVG : CAMERA_ICON_SVG;
+              subPhotoBtn.setAttribute('aria-label', sub.image ? 'View photo' : 'Add photo');
+              subPhotoBtn.addEventListener('click', (e) => { e.stopPropagation(); photoTapHandler(item.id, sub.id); });
               const sdel = document.createElement('button');
               sdel.className = 'delbtn';
               sdel.textContent = '×';
@@ -935,6 +1277,7 @@
               sdel.addEventListener('click', (e) => { e.stopPropagation(); deleteSubtask(item.id, sub.id); });
               sli.appendChild(sbox);
               sli.appendChild(slabel);
+              sli.appendChild(subPhotoBtn);
               sli.appendChild(promote);
               sli.appendChild(sdel);
               ul.appendChild(sli);
@@ -1008,18 +1351,18 @@
         badge.textContent = 'project';
         row.appendChild(badge);
       }
+      const renameBtn = document.createElement('button');
       renameBtn.className = 'iconbtn';
       renameBtn.textContent = '✎';
       renameBtn.setAttribute('aria-label', 'Rename list');
       renameBtn.addEventListener('click', (e) => { e.stopPropagation(); renameList(id); });
 
-      row.appendChild(switchBtn);
       row.appendChild(renameBtn);
 
       if (ids.length > 1) {
         const delBtn = document.createElement('button');
         delBtn.className = 'iconbtn danger';
-        delBtn.textContent = '🗑';
+        delBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>';
         delBtn.setAttribute('aria-label', 'Delete list');
         delBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteList(id); });
         row.appendChild(delBtn);
@@ -1501,9 +1844,27 @@
     });
   });
 
+  document.getElementById('themeAccent').addEventListener('input', (e) => setThemeColor('accent', e.target.value));
+  document.getElementById('themeText').addEventListener('input', (e) => setThemeColor('text', e.target.value));
+  document.getElementById('themeBg').addEventListener('input', (e) => setThemeColor('bg', e.target.value));
+  document.getElementById('resetThemeBtn').addEventListener('click', resetTheme);
+  document.getElementById('themeToggleBtn').addEventListener('click', () => {
+    document.getElementById('themePanel').classList.toggle('show');
+  });
+
+  document.getElementById('photoFileInput').addEventListener('change', handlePhotoFileChange);
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.getElementById('lightboxReplace').addEventListener('click', replaceLightboxPhoto);
+  document.getElementById('lightboxRemove').addEventListener('click', removeLightboxPhoto);
+
   // Init
   state = loadState();
   performRollover();
+  applyTheme();
+  syncThemeInputs();
   persist();
   render();
 
