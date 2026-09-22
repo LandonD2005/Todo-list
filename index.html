@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>To Do</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="To Do">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<style>
+  :root {
+    --bg: #f7f5f2;
+    --card: #ffffff;
+    --text: #1f1d1a;
+    --muted: #8a8580;
+    --accent: #2f6f4f;
+    --accent-weak: #e4efe8;
+    --border: #e6e2dc;
+    --danger: #b5493f;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17181a;
+      --card: #212327;
+      --text: #f0eee9;
+      --muted: #8b8f96;
+      --accent: #5fbf88;
+      --accent-weak: #1e2d25;
+      --border: #33363b;
+      --danger: #e0685c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17181a;
+    --card: #212327;
+    --text: #f0eee9;
+    --muted: #8b8f96;
+    --accent: #5fbf88;
+    --accent-weak: #1e2d25;
+    --border: #33363b;
+    --danger: #e0685c;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; -webkit-tap-highlight-color: transparent; }
+  * { box-sizing: border-box; touch-action: manipulation; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100%;
+    padding: 20px 16px calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+  .wrap { max-width: 560px; margin: 0 auto; }
+
+  .listbar {
+    margin-bottom: 16px;
+  }
+  .listbar summary {
+    list-style: none;
+    cursor: pointer;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .listbar summary::-webkit-details-marker { display: none; }
+  .listbar summary::after {
+    content: '▾';
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-left: 8px;
+  }
+  .listbar[open] summary::after { content: '▴'; }
+  #listItems {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .listrow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px 4px 4px 12px;
+  }
+  .listrow.active { border-color: var(--accent); background: var(--accent-weak); }
+  .listrow button.switchbtn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 0.95rem;
+    text-align: left;
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .listrow.active button.switchbtn { color: var(--accent); font-weight: 700; }
+  .listrow .iconbtn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 8px;
+  }
+  .listrow .iconbtn.danger { color: var(--danger); }
+  .newlistbtn {
+    margin-top: 8px;
+    width: 100%;
+    background: var(--accent-weak);
+    color: var(--accent);
+    border: 1px dashed var(--accent);
+    border-radius: 10px;
+    padding: 11px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .newlistform {
+    margin-top: 10px;
+    padding: 12px;
+    background: var(--accent-weak);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .newlistform input[type="text"] {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 11px 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .typechoice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .typebtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 8px;
+    cursor: pointer;
+    color: var(--text);
+  }
+  .typebtn .ticon { font-size: 1.3rem; }
+  .typebtn .tname { font-weight: 700; font-size: 0.9rem; }
+  .typebtn .tsub { font-size: 0.7rem; color: var(--muted); line-height: 1.25; }
+  .typebtn.active { border-color: var(--accent); background: var(--card); box-shadow: 0 0 0 1px var(--accent) inset; }
+  .typebtn.active .tname { color: var(--accent); }
+  .newlistform .formrow { display: flex; gap: 8px; }
+  .newlistform .formrow button {
+    flex: 1;
+    border-radius: 10px;
+    padding: 11px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+  }
+  .newlistform .cancelbtn { background: var(--card); color: var(--text); }
+  .newlistform .createbtn { background: var(--accent); color: white; border-color: var(--accent); }
+  .backuprow { display: flex; gap: 8px; margin-top: 10px; }
+  .backupbtn {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 10px;
+    padding: 10px 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .listrow .badge {
+    font-size: 0.68rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 6px;
+    margin-right: 2px;
+    flex-shrink: 0;
+  }
+
+  h1 { font-size: 1.4rem; margin: 4px 0 14px; letter-spacing: -0.01em; }
+
+  .daynav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .daynav button.navbtn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 1.15rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .daylabel {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 8px 4px;
+    border-radius: 8px;
+  }
+  .daylabel .sub { display: block; font-weight: 400; font-size: 0.78rem; color: var(--muted); margin-top: 1px; }
+  .todaybtn {
+    background: var(--accent-weak);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.8rem;
+    padding: 0 12px;
+    height: 44px;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+  #datejump {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 1px;
+    height: 1px;
+  }
+
+  .progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .progress-bar { flex: 1; height: 8px; background: var(--border); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.25s ease; width: 0%; }
+  .progress-label { font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
+
+  .addbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
+    z-index: 10;
+  }
+  .addbar-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+  }
+  .addbar input[type="text"] {
+    flex: 1;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 16px;
+    min-width: 0;
+    min-height: 46px;
+  }
+  .addbar input[type="text"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  .addbar button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0 20px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    min-height: 46px;
+  }
+  .micbtn {
+    background: var(--card) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    width: 46px;
+    padding: 0 !important;
+    font-size: 1.15rem !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .micbtn.listening {
+    background: #d64545 !important;
+    border-color: #d64545 !important;
+    color: white !important;
+    animation: micpulse 1.2s ease-in-out infinite;
+  }
+  @keyframes micpulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(214, 69, 69, 0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(214, 69, 69, 0); }
+  }
+
+  li.task-item { padding: 0; display: block; overflow: hidden; }
+  .taskmain {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px 10px 13px 14px;
+  }
+  .subtoggle {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    padding: 3px 0 0;
+    margin-top: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .subtoggle .arrow { display: inline-block; transition: transform 0.15s ease; }
+  .subtoggle.open .arrow { transform: rotate(90deg); }
+  .addsub-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 8px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 8px;
+  }
+  .subtasks-wrap {
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+    padding: 10px 10px 10px 38px;
+  }
+  .subtask-list {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .subtask-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 6px 8px 10px;
+  }
+  .subtask-item .box {
+    width: 19px;
+    height: 19px;
+    border-radius: 5px;
+  }
+  .subtask-item .box svg { width: 12px; height: 12px; }
+  .subtask-item .label { flex: 1; font-size: 0.9rem; cursor: pointer; }
+  .subtask-item.done .label { color: var(--muted); text-decoration: line-through; }
+  .subtask-item.done .box { background: var(--accent); border-color: var(--accent); }
+  .promotebtn {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px;
+    min-width: 34px;
+    min-height: 34px;
+    border-radius: 7px;
+    flex-shrink: 0;
+  }
+  .subtask-item .delbtn {
+    font-size: 1.05rem;
+    min-width: 34px;
+    min-height: 34px;
+    padding: 6px;
+    margin: 0;
+  }
+  .addsub-row { display: flex; gap: 6px; }
+  .addsub-row input {
+    flex: 1;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 9px 10px;
+    font-size: 16px;
+  }
+  .addsub-row button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  ul { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px 10px 13px 14px;
+  }
+  .box {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    border: 2px solid var(--muted);
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    cursor: pointer;
+  }
+  li.done .box { background: var(--accent); border-color: var(--accent); }
+  .box svg { width: 16px; height: 16px; opacity: 0; transform: scale(0.6); transition: opacity 0.15s ease, transform 0.15s ease; }
+  li.done .box svg { opacity: 1; transform: scale(1); }
+  .label { flex: 1; font-size: 1rem; line-height: 1.4; padding-top: 2px; cursor: pointer; }
+  .label .carried { font-size: 0.76rem; color: var(--muted); font-style: italic; }
+  li.done .label { color: var(--muted); text-decoration: line-through; }
+  .delbtn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 10px;
+    margin: -10px -6px -10px 0;
+    border-radius: 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .delbtn:active { background: var(--accent-weak); }
+
+  .empty { color: var(--muted); font-size: 0.9rem; text-align: center; padding: 24px 0; }
+
+  .actionrow { display: flex; gap: 8px; margin-bottom: 22px; }
+  .actionrow button {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .actionrow button.archive { color: var(--accent); }
+  .actionrow button.clear { color: var(--danger); }
+  .actionrow button:disabled { opacity: 0.4; cursor: default; }
+
+  details.archive-section { border-top: 1px solid var(--border); padding-top: 12px; }
+  details.archive-section summary {
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    list-style: none;
+  }
+  details.archive-section summary::-webkit-details-marker { display: none; }
+  .archive-day { margin-top: 12px; }
+  .archive-day .adhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .archive-day .adhead button {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 0.78rem;
+    cursor: pointer;
+    padding: 2px 6px;
+  }
+  .archive-day ul li { opacity: 0.75; padding: 9px 10px 9px 14px; }
+  .archive-empty { color: var(--muted); font-size: 0.82rem; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 18px; }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%) translateY(10px);
+    background: var(--text);
+    color: var(--bg);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 50;
+    white-space: nowrap;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <details class="listbar" id="listSection">
+    <summary id="listSummary">My To-do</summary>
+    <div id="listItems"></div>
+    <button class="newlistbtn" id="newListBtn">+ New list</button>
+    <div class="newlistform" id="newListForm" style="display:none;">
+      <input type="text" id="newListNameInput" placeholder="List name" maxlength="60">
+      <div class="typechoice" id="typeChoice">
+        <button type="button" class="typebtn active" data-type="daily">
+          <span class="ticon">📅</span>
+          <span class="tname">Daily</span>
+          <span class="tsub">By date, rolls forward</span>
+        </button>
+        <button type="button" class="typebtn" data-type="project">
+          <span class="ticon">📋</span>
+          <span class="tname">Project</span>
+          <span class="tsub">Ongoing list, no dates</span>
+        </button>
+      </div>
+      <div class="formrow">
+        <button id="cancelNewListBtn" class="cancelbtn">Cancel</button>
+        <button id="confirmNewListBtn" class="createbtn">Create list</button>
+      </div>
+    </div>
+    <div class="backuprow">
+      <button class="backupbtn" id="backupBtn">📤 Backup</button>
+      <button class="backupbtn" id="restoreBtn">⬆ Restore</button>
+      <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
+    </div>
+  </details>
+
+  <div class="daynav">
+    <button class="navbtn" id="prevDay" aria-label="Previous day">‹</button>
+    <div class="daylabel" id="dayLabel"></div>
+    <button class="navbtn" id="nextDay" aria-label="Next day">›</button>
+    <button class="todaybtn" id="todayBtn">Today</button>
+    <input type="date" id="datejump">
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+    <div class="progress-label" id="label">0 / 0</div>
+  </div>
+
+  <ul id="list"></ul>
+  <div class="empty" id="emptyMsg" style="display:none;">Nothing here yet — add a task above.</div>
+
+  <div class="actionrow">
+    <button class="clear" id="clearBtn">Clear completed</button>
+    <button class="archive" id="archiveBtn">Archive this day</button>
+  </div>
+
+  <details class="archive-section" id="archiveSection">
+    <summary id="archiveSummary">Archived days</summary>
+    <div id="archiveList"></div>
+  </details>
+
+  <footer>Tap a box to check it off · × deletes a task</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="addbar">
+  <div class="addbar-inner">
+    <input type="text" id="newTask" placeholder="Add a task for this day…" maxlength="200" enterkeyhint="done">
+    <button id="micBtn" class="micbtn" style="display:none;" aria-label="Add task by voice">🎤</button>
+    <button id="addBtn">Add</button>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'todo-blank-template-v1';
+
+  let toastTimer = null;
+  function showToast(msg) {
+    const el = document.getElementById('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+  }
+
+  const AUTO_BACKUP_KEY = 'todo-last-autobackup-ts';
+  const AUTO_BACKUP_INTERVAL_MS = 24 * 60 * 60 * 1000; // at most once a day, quietly
+
+  function maybeAutoBackup() {
+    try {
+      const last = parseInt(localStorage.getItem(AUTO_BACKUP_KEY) || '0', 10);
+      const now = Date.now();
+      if (now - last > AUTO_BACKUP_INTERVAL_MS) {
+        downloadBackup();
+        localStorage.setItem(AUTO_BACKUP_KEY, String(now));
+        showToast('Backed up to your device');
+      }
+    } catch (e) {}
+  }
+
+  function todayStr() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function fmtLabel(dateStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dt = new Date(y, m - 1, d);
+    const weekday = dt.toLocaleDateString(undefined, { weekday: 'long' });
+    const rest = dt.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+    return { weekday, rest };
+  }
+
+  function addDays(dateStr, delta) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dt = new Date(y, m - 1, d);
+    dt.setDate(dt.getDate() + delta);
+    return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+  }
+
+  function uid() {
+    return Math.random().toString(36).slice(2, 10);
+  }
+
+  function newListId() {
+    return 'list_' + Math.random().toString(36).slice(2, 9);
+  }
+
+  const PROTOTECH_ID = 'mylist';
+  const defaultState = {
+    lists: {
+      [PROTOTECH_ID]: {
+        name: "My To-do",
+        type: 'daily',
+        days: {},
+        archive: {},
+        rolledUpTo: todayStr()
+      }
+    },
+    currentListId: PROTOTECH_ID
+  };
+
+  function migrateIfNeeded(parsed) {
+    // Old single-list format had top-level "days"/"archive" instead of "lists"
+    if (parsed && parsed.days && !parsed.lists) {
+      return {
+        lists: {
+          [PROTOTECH_ID]: {
+            name: "My To-do",
+            type: 'daily',
+            days: parsed.days || {},
+            archive: parsed.archive || {},
+            rolledUpTo: parsed.rolledUpTo || todayStr()
+          }
+        },
+        currentListId: PROTOTECH_ID
+      };
+    }
+    return parsed;
+  }
+
+  let state = defaultState;
+  let artifact = null;
+  let current = todayStr(); // note: seed data is dated 9/22/2026; if opened another day, nav to it manually
+
+  function loadState() {
+    // Prefer state baked into this saved page (works across devices via artifact.publish)
+    try {
+      const el = document.getElementById('embedded-state');
+      if (el && el.textContent.trim()) {
+        const parsed = migrateIfNeeded(JSON.parse(el.textContent));
+        if (parsed && parsed.lists) return parsed;
+      }
+    } catch (e) {}
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = migrateIfNeeded(JSON.parse(saved));
+        if (parsed && parsed.lists) return parsed;
+      }
+    } catch (e) {}
+    return defaultState;
+  }
+
+  function currentList() {
+    if (!state.lists[state.currentListId]) {
+      state.currentListId = Object.keys(state.lists)[0];
+    }
+    return state.lists[state.currentListId];
+  }
+
+  function persist() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.error('local save failed', e);
+    }
+    maybeAutoBackup();
+    document.querySelectorAll('#embedded-state, script[id="embedded-state"]').forEach(n => n.remove());
+    const el = document.createElement('script');
+    el.type = 'application/json';
+    el.id = 'embedded-state';
+    el.textContent = JSON.stringify(state);
+    document.body.appendChild(el);
+
+    if (artifact) {
+      try {
+        const html = document.documentElement.outerHTML;
+        artifact.publish('<!DOCTYPE html>\n' + html).catch(() => {});
+      } catch (e) {}
+    }
+  }
+
+  function getDayTasks(dateStr) {
+    const list = currentList();
+    if (!list.days[dateStr]) list.days[dateStr] = [];
+    return list.days[dateStr];
+  }
+
+  function getActiveTasks() {
+    const list = currentList();
+    if (list.type === 'project') {
+      if (!list.tasks) list.tasks = [];
+      return list.tasks;
+    }
+    return getDayTasks(current);
+  }
+
+  function performRolloverForList(list) {
+    if (list.type === 'project') return;
+    const today = todayStr();
+    if (!list.rolledUpTo) {
+      const keys = Object.keys(list.days);
+      list.rolledUpTo = keys.length ? keys.sort()[0] : today;
+    }
+    let cursor = list.rolledUpTo;
+    let guard = 0;
+    while (cursor < today && guard < 730) {
+      const next = addDays(cursor, 1);
+      const sourceTasks = list.days[cursor] || [];
+      const incomplete = sourceTasks.filter(t => !t.done);
+      if (incomplete.length > 0) {
+        list.days[cursor] = sourceTasks.filter(t => t.done);
+        if (!list.days[next]) list.days[next] = [];
+        incomplete.forEach(t => {
+          list.days[next].push({
+            id: uid(),
+            text: t.text,
+            done: false,
+            carriedFrom: t.carriedFrom || cursor
+          });
+        });
+      }
+      cursor = next;
+      guard++;
+    }
+    list.rolledUpTo = today;
+  }
+
+  function performRollover() {
+    Object.values(state.lists).forEach(performRolloverForList);
+  }
+
+  function render() {
+    const list = currentList();
+    const isProject = list.type === 'project';
+    document.getElementById('listSummary').textContent = list.name;
+
+    // Day nav only applies to daily lists
+    document.querySelector('.daynav').style.display = isProject ? 'none' : 'flex';
+    if (!isProject) {
+      const { weekday, rest } = fmtLabel(current);
+      document.getElementById('dayLabel').innerHTML = `${weekday}<span class="sub">${rest}</span>`;
+    }
+
+    document.getElementById('newTask').placeholder = isProject ? 'Add a task to this list…' : 'Add a task for this day…';
+
+    // Active tasks
+    const tasks = getActiveTasks();
+    const taskList = document.getElementById('list');
+    const emptyMsg = document.getElementById('emptyMsg');
+    taskList.innerHTML = '';
+    if (tasks.length === 0) {
+      emptyMsg.style.display = 'block';
+    } else {
+      emptyMsg.style.display = 'none';
+      tasks.forEach((item) => {
+        const li = document.createElement('li');
+        li.className = 'task-item' + (item.done ? ' done' : '');
+
+        const main = document.createElement('div');
+        main.className = 'taskmain';
+
+        const box = document.createElement('div');
+        box.className = 'box';
+        box.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        box.addEventListener('click', () => toggleTask(item.id));
+
+        const label = document.createElement('div');
+        label.className = 'label';
+        const textSpan = document.createElement('span');
+        textSpan.textContent = item.text;
+        textSpan.addEventListener('click', () => toggleTask(item.id));
+        label.appendChild(textSpan);
+
+        if (item.carriedFrom) {
+          const note = document.createElement('span');
+          note.className = 'carried';
+          const { weekday, rest } = fmtLabel(item.carriedFrom);
+          note.textContent = `carried from ${weekday.slice(0, 3)}, ${rest}`;
+          label.appendChild(document.createElement('br'));
+          label.appendChild(note);
+        }
+
+        const subtasks = item.subtasks || [];
+        const isExpanded = expandedTasks.has(item.id);
+
+        if (subtasks.length > 0) {
+          const subDone = subtasks.filter(s => s.done).length;
+          const toggle = document.createElement('button');
+          toggle.className = 'subtoggle' + (isExpanded ? ' open' : '');
+          toggle.innerHTML = `<span class="arrow">▸</span> ${subDone}/${subtasks.length} subtasks`;
+          toggle.addEventListener('click', (e) => { e.stopPropagation(); toggleExpand(item.id); });
+          label.appendChild(document.createElement('br'));
+          label.appendChild(toggle);
+        }
+
+        main.appendChild(box);
+        main.appendChild(label);
+
+        const addSubBtn = document.createElement('button');
+        addSubBtn.className = 'addsub-btn';
+        addSubBtn.textContent = '+';
+        addSubBtn.setAttribute('aria-label', 'Add subtask');
+        addSubBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          expandedTasks.add(item.id);
+          render();
+          const input = document.querySelector(`.addsub-row input[data-parent="${item.id}"]`);
+          if (input) input.focus();
+        });
+        main.appendChild(addSubBtn);
+
+        const del = document.createElement('button');
+        del.className = 'delbtn';
+        del.textContent = '×';
+        del.setAttribute('aria-label', 'Delete task');
+        del.addEventListener('click', (e) => { e.stopPropagation(); deleteTask(item.id); });
+        main.appendChild(del);
+
+        li.appendChild(main);
+
+        if (isExpanded) {
+          const wrap = document.createElement('div');
+          wrap.className = 'subtasks-wrap';
+
+          if (subtasks.length > 0) {
+            const ul = document.createElement('ul');
+            ul.className = 'subtask-list';
+            subtasks.forEach(sub => {
+              const sli = document.createElement('li');
+              sli.className = 'subtask-item' + (sub.done ? ' done' : '');
+              const sbox = document.createElement('div');
+              sbox.className = 'box';
+              sbox.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+              sbox.addEventListener('click', () => toggleSubtask(item.id, sub.id));
+              const slabel = document.createElement('div');
+              slabel.className = 'label';
+              slabel.textContent = sub.text;
+              slabel.addEventListener('click', () => toggleSubtask(item.id, sub.id));
+              const promote = document.createElement('button');
+              promote.className = 'promotebtn';
+              promote.textContent = '↑';
+              promote.setAttribute('aria-label', 'Make this a main task');
+              promote.title = 'Make this a main task';
+              promote.addEventListener('click', (e) => { e.stopPropagation(); promoteSubtask(item.id, sub.id); });
+              const sdel = document.createElement('button');
+              sdel.className = 'delbtn';
+              sdel.textContent = '×';
+              sdel.setAttribute('aria-label', 'Delete subtask');
+              sdel.addEventListener('click', (e) => { e.stopPropagation(); deleteSubtask(item.id, sub.id); });
+              sli.appendChild(sbox);
+              sli.appendChild(slabel);
+              sli.appendChild(promote);
+              sli.appendChild(sdel);
+              ul.appendChild(sli);
+            });
+            wrap.appendChild(ul);
+          }
+
+          const addRow = document.createElement('div');
+          addRow.className = 'addsub-row';
+          const addInput = document.createElement('input');
+          addInput.type = 'text';
+          addInput.placeholder = 'Add subtask…';
+          addInput.maxLength = 200;
+          addInput.setAttribute('data-parent', item.id);
+          addInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              addSubtask(item.id, addInput.value);
+              addInput.value = '';
+              addInput.focus();
+            }
+          });
+          const addBtn = document.createElement('button');
+          addBtn.textContent = 'Add';
+          addBtn.addEventListener('click', () => {
+            addSubtask(item.id, addInput.value);
+            addInput.value = '';
+            addInput.focus();
+          });
+          addRow.appendChild(addInput);
+          addRow.appendChild(addBtn);
+          wrap.appendChild(addRow);
+
+          li.appendChild(wrap);
+        }
+
+        taskList.appendChild(li);
+      });
+    }
+
+    const doneCount = tasks.filter(t => t.done).length;
+    document.getElementById('label').textContent = `${doneCount} / ${tasks.length}`;
+    document.getElementById('fill').style.width = (tasks.length ? (doneCount / tasks.length * 100) : 0) + '%';
+
+    document.getElementById('clearBtn').disabled = doneCount === 0;
+    document.getElementById('archiveBtn').textContent = isProject ? 'Archive completed' : 'Archive this day';
+    document.getElementById('archiveBtn').disabled = isProject ? doneCount === 0 : tasks.length === 0;
+
+    renderArchiveSection();
+    renderListPanel();
+  }
+
+  function renderListPanel() {
+    const container = document.getElementById('listItems');
+    container.innerHTML = '';
+    const ids = Object.keys(state.lists);
+    ids.forEach(id => {
+      const l = state.lists[id];
+      const row = document.createElement('div');
+      row.className = 'listrow' + (id === state.currentListId ? ' active' : '');
+
+      const switchBtn = document.createElement('button');
+      switchBtn.className = 'switchbtn';
+      switchBtn.textContent = l.name;
+      switchBtn.addEventListener('click', () => switchList(id));
+
+      row.appendChild(switchBtn);
+
+      if (l.type === 'project') {
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.textContent = 'project';
+        row.appendChild(badge);
+      }
+      renameBtn.className = 'iconbtn';
+      renameBtn.textContent = '✎';
+      renameBtn.setAttribute('aria-label', 'Rename list');
+      renameBtn.addEventListener('click', (e) => { e.stopPropagation(); renameList(id); });
+
+      row.appendChild(switchBtn);
+      row.appendChild(renameBtn);
+
+      if (ids.length > 1) {
+        const delBtn = document.createElement('button');
+        delBtn.className = 'iconbtn danger';
+        delBtn.textContent = '🗑';
+        delBtn.setAttribute('aria-label', 'Delete list');
+        delBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteList(id); });
+        row.appendChild(delBtn);
+      }
+
+      container.appendChild(row);
+    });
+  }
+
+  function renderArchiveSection() {
+    const list = currentList();
+    if (list.type === 'project') {
+      renderProjectArchive(list);
+    } else {
+      renderDailyArchive(list);
+    }
+  }
+
+  function renderDailyArchive(list) {
+    const archiveList = document.getElementById('archiveList');
+    const archive = list.archive || {};
+    const dates = Object.keys(archive).sort().reverse();
+    document.getElementById('archiveSummary').textContent = `Archived days${dates.length ? ' (' + dates.length + ')' : ''}`;
+    if (dates.length === 0) {
+      archiveList.innerHTML = '<div class="archive-empty">Nothing archived yet.</div>';
+      return;
+    }
+    archiveList.innerHTML = '';
+    dates.forEach(dateStr => {
+      const tasks = archive[dateStr];
+      const { weekday, rest } = fmtLabel(dateStr);
+      const wrap = document.createElement('div');
+      wrap.className = 'archive-day';
+      const head = document.createElement('div');
+      head.className = 'adhead';
+      head.innerHTML = `<span>${weekday}, ${rest}</span>`;
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Delete';
+      delBtn.addEventListener('click', () => deleteArchivedDay(dateStr));
+      head.appendChild(delBtn);
+      const ul = document.createElement('ul');
+      tasks.forEach(t => {
+        const li = document.createElement('li');
+        li.className = t.done ? 'done' : '';
+        const box = document.createElement('div');
+        box.className = 'box';
+        box.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        const label = document.createElement('div');
+        label.className = 'label';
+        label.textContent = t.text;
+        li.appendChild(box);
+        li.appendChild(label);
+        ul.appendChild(li);
+      });
+      wrap.appendChild(head);
+      wrap.appendChild(ul);
+      archiveList.appendChild(wrap);
+    });
+  }
+
+  function renderProjectArchive(list) {
+    const archiveList = document.getElementById('archiveList');
+    const archived = list.archivedTasks || [];
+    document.getElementById('archiveSummary').textContent = `Archived tasks${archived.length ? ' (' + archived.length + ')' : ''}`;
+    if (archived.length === 0) {
+      archiveList.innerHTML = '<div class="archive-empty">Nothing archived yet.</div>';
+      return;
+    }
+    archiveList.innerHTML = '';
+    const wrap = document.createElement('div');
+    wrap.className = 'archive-day';
+    const head = document.createElement('div');
+    head.className = 'adhead';
+    head.innerHTML = `<span>${archived.length} archived task${archived.length === 1 ? '' : 's'}</span>`;
+    const delBtn = document.createElement('button');
+    delBtn.textContent = 'Delete all';
+    delBtn.addEventListener('click', () => deleteAllArchivedTasks());
+    head.appendChild(delBtn);
+    const ul = document.createElement('ul');
+    archived.forEach(t => {
+      const li = document.createElement('li');
+      li.className = t.done ? 'done' : '';
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+      const label = document.createElement('div');
+      label.className = 'label';
+      label.textContent = t.text;
+      li.appendChild(box);
+      li.appendChild(label);
+      ul.appendChild(li);
+    });
+    wrap.appendChild(head);
+    wrap.appendChild(ul);
+    archiveList.appendChild(wrap);
+  }
+
+  const expandedTasks = new Set(); // ephemeral: which tasks show their subtasks expanded (resets on reload, keeps things decluttered by default)
+
+  function toggleExpand(id) {
+    if (expandedTasks.has(id)) expandedTasks.delete(id); else expandedTasks.add(id);
+    render();
+  }
+
+  function toggleTask(id) {
+    const tasks = getActiveTasks();
+    const t = tasks.find(x => x.id === id);
+    if (!t) return;
+    t.done = !t.done;
+    // If this task has subtasks, cascade the new state down to all of them
+    if (t.subtasks && t.subtasks.length > 0) {
+      t.subtasks.forEach(s => { s.done = t.done; });
+    }
+    render();
+    persist();
+  }
+
+  function toggleSubtask(parentId, subId) {
+    const tasks = getActiveTasks();
+    const t = tasks.find(x => x.id === parentId);
+    if (!t || !t.subtasks) return;
+    const s = t.subtasks.find(x => x.id === subId);
+    if (!s) return;
+    s.done = !s.done;
+    // Auto-complete (or un-complete) the parent based on its subtasks
+    t.done = t.subtasks.every(x => x.done);
+    render();
+    persist();
+  }
+
+  function addSubtask(parentId, text) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    const tasks = getActiveTasks();
+    const t = tasks.find(x => x.id === parentId);
+    if (!t) return;
+    if (!t.subtasks) t.subtasks = [];
+    t.subtasks.push({ id: uid(), text: trimmed, done: false });
+    // Adding a new, incomplete subtask means the parent can't be "done" anymore
+    t.done = t.subtasks.every(x => x.done);
+    expandedTasks.add(parentId);
+    render();
+    persist();
+  }
+
+  function deleteSubtask(parentId, subId) {
+    const tasks = getActiveTasks();
+    const t = tasks.find(x => x.id === parentId);
+    if (!t || !t.subtasks) return;
+    t.subtasks = t.subtasks.filter(x => x.id !== subId);
+    if (t.subtasks.length > 0) {
+      t.done = t.subtasks.every(x => x.done);
+    }
+    render();
+    persist();
+  }
+
+  function promoteSubtask(parentId, subId) {
+    // Undo: pull a subtask back out to be its own standalone main task
+    const tasks = getActiveTasks();
+    const parentIndex = tasks.findIndex(x => x.id === parentId);
+    if (parentIndex === -1) return;
+    const parent = tasks[parentIndex];
+    if (!parent.subtasks) return;
+    const subIndex = parent.subtasks.findIndex(x => x.id === subId);
+    if (subIndex === -1) return;
+    const [sub] = parent.subtasks.splice(subIndex, 1);
+    tasks.splice(parentIndex + 1, 0, { id: sub.id, text: sub.text, done: sub.done });
+    if (parent.subtasks.length > 0) {
+      parent.done = parent.subtasks.every(x => x.done);
+    }
+    render();
+    persist();
+  }
+
+  function deleteTask(id) {
+    const list = currentList();
+    if (list.type === 'project') {
+      list.tasks = getActiveTasks().filter(x => x.id !== id);
+    } else {
+      list.days[current] = getActiveTasks().filter(x => x.id !== id);
+    }
+    render();
+    persist();
+  }
+
+  function addTask(text) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    getActiveTasks().push({ id: uid(), text: trimmed, done: false });
+    render();
+    persist();
+  }
+
+  function clearCompleted() {
+    const list = currentList();
+    if (list.type === 'project') {
+      list.tasks = getActiveTasks().filter(t => !t.done);
+    } else {
+      list.days[current] = getActiveTasks().filter(t => !t.done);
+    }
+    render();
+    persist();
+  }
+
+  function archiveAction() {
+    const list = currentList();
+    const tasks = getActiveTasks();
+    if (list.type === 'project') {
+      const completed = tasks.filter(t => t.done);
+      if (completed.length === 0) return;
+      if (!confirm(`Archive ${completed.length} completed task(s)? They'll move to Archived tasks.`)) return;
+      if (!list.archivedTasks) list.archivedTasks = [];
+      list.archivedTasks = list.archivedTasks.concat(completed);
+      list.tasks = tasks.filter(t => !t.done);
+    } else {
+      if (tasks.length === 0) return;
+      if (!confirm(`Archive all ${tasks.length} task(s) for this day? They'll move to Archived days and clear from the active list.`)) return;
+      const existing = list.archive[current] || [];
+      list.archive[current] = existing.concat(tasks);
+      list.days[current] = [];
+    }
+    render();
+    persist();
+  }
+
+  function deleteArchivedDay(dateStr) {
+    if (!confirm('Permanently delete this archived day? This cannot be undone.')) return;
+    delete currentList().archive[dateStr];
+    render();
+    persist();
+  }
+
+  function deleteAllArchivedTasks() {
+    if (!confirm('Permanently delete all archived tasks for this list? This cannot be undone.')) return;
+    currentList().archivedTasks = [];
+    render();
+    persist();
+  }
+
+  function goToDay(dateStr) {
+    current = dateStr;
+    render();
+  }
+
+  function switchList(id) {
+    if (!state.lists[id]) return;
+    state.currentListId = id;
+    document.getElementById('listSection').open = false;
+    render();
+    persist();
+  }
+
+  let pendingListType = 'daily';
+
+  function openNewListForm() {
+    document.getElementById('newListNameInput').value = '';
+    document.querySelectorAll('.typebtn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.typebtn[data-type="daily"]').classList.add('active');
+    pendingListType = 'daily';
+    document.getElementById('newListForm').style.display = 'block';
+    document.getElementById('newListBtn').style.display = 'none';
+    document.getElementById('newListNameInput').focus();
+  }
+
+  function closeNewListForm() {
+    document.getElementById('newListForm').style.display = 'none';
+    document.getElementById('newListBtn').style.display = 'block';
+  }
+
+  function confirmCreateList() {
+    const input = document.getElementById('newListNameInput');
+    const trimmed = input.value.trim();
+    if (!trimmed) {
+      input.focus();
+      return;
+    }
+    const id = newListId();
+    if (pendingListType === 'project') {
+      state.lists[id] = { name: trimmed, type: 'project', tasks: [], archivedTasks: [] };
+    } else {
+      state.lists[id] = { name: trimmed, type: 'daily', days: {}, archive: {}, rolledUpTo: todayStr() };
+    }
+    state.currentListId = id;
+    closeNewListForm();
+    document.getElementById('listSection').open = false;
+    render();
+    persist();
+  }
+
+  function renameList(id) {
+    const list = state.lists[id];
+    if (!list) return;
+    const name = prompt('Rename list:', list.name);
+    if (name === null) return;
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    list.name = trimmed;
+    render();
+    persist();
+  }
+
+  function deleteList(id) {
+    const ids = Object.keys(state.lists);
+    if (ids.length <= 1) return;
+    const list = state.lists[id];
+    if (!confirm(`Permanently delete "${list.name}" and all its tasks? This cannot be undone.`)) return;
+    delete state.lists[id];
+    if (state.currentListId === id) {
+      state.currentListId = Object.keys(state.lists)[0];
+    }
+    render();
+    persist();
+  }
+
+  function downloadBackup() {
+    try {
+      const json = JSON.stringify(state, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `todo-backup-${todayStr()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) {
+      alert('Backup failed: ' + e.message);
+    }
+  }
+
+  async function shareBackup() {
+    // Try the native iOS/Android share sheet first (Mail, Messages, AirDrop,
+    // etc.) so backing up and sending it to another device is one tap.
+    // Falls back to a plain download if sharing files isn't supported here.
+    try {
+      const json = JSON.stringify(state, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const file = new File([blob], `todo-backup-${todayStr()}.json`, { type: 'application/json' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: currentList() ? currentList().name + ' backup' : 'To Do backup'
+        });
+        return;
+      }
+    } catch (e) {
+      if (e && e.name === 'AbortError') return; // user cancelled the share sheet, do nothing
+    }
+    downloadBackup();
+  }
+
+  function triggerRestore() {
+    document.getElementById('restoreFile').click();
+  }
+
+  function handleRestoreFile(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = migrateIfNeeded(JSON.parse(reader.result));
+        if (!parsed || !parsed.lists) {
+          alert("That file doesn't look like a valid backup.");
+          return;
+        }
+        if (!confirm('Restore this backup? It will replace everything currently in the app on this device.')) return;
+        state = parsed;
+        render();
+        persist();
+      } catch (err) {
+        alert('Could not read that file: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  }
+
+  // Wire up controls
+  document.getElementById('prevDay').addEventListener('click', () => goToDay(addDays(current, -1)));
+  document.getElementById('nextDay').addEventListener('click', () => goToDay(addDays(current, 1)));
+  document.getElementById('todayBtn').addEventListener('click', () => goToDay(todayStr()));
+  document.getElementById('dayLabel').addEventListener('click', () => {
+    const input = document.getElementById('datejump');
+    input.value = current;
+    input.style.pointerEvents = 'auto';
+    input.focus();
+    if (input.showPicker) { try { input.showPicker(); } catch (e) {} }
+  });
+  document.getElementById('datejump').addEventListener('change', (e) => {
+    if (e.target.value) goToDay(e.target.value);
+  });
+  document.getElementById('addBtn').addEventListener('click', () => {
+    const input = document.getElementById('newTask');
+    addTask(input.value);
+    input.value = '';
+    input.focus();
+  });
+  document.getElementById('newTask').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      addTask(e.target.value);
+      e.target.value = '';
+    }
+  });
+
+  // Voice-to-text for adding tasks (Web Speech API). Only shown if the
+  // browser actually supports it — Safari support varies, especially when
+  // running as a home-screen app, so this fails quietly rather than showing
+  // a button that doesn't work.
+  let recognition = null;
+  let recognizing = false;
+
+  function setupVoiceInput() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const micBtn = document.getElementById('micBtn');
+    if (!SR || !micBtn) return;
+
+    micBtn.style.display = 'flex';
+    recognition = new SR();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    try { recognition.lang = navigator.language || 'en-US'; } catch (e) {}
+
+    recognition.onstart = () => {
+      recognizing = true;
+      micBtn.classList.add('listening');
+    };
+    recognition.onresult = (e) => {
+      let transcript = '';
+      for (let i = 0; i < e.results.length; i++) {
+        transcript += e.results[i][0].transcript;
+      }
+      document.getElementById('newTask').value = transcript;
+    };
+    recognition.onerror = () => {
+      recognizing = false;
+      micBtn.classList.remove('listening');
+    };
+    recognition.onend = () => {
+      recognizing = false;
+      micBtn.classList.remove('listening');
+      document.getElementById('newTask').focus();
+    };
+
+    micBtn.addEventListener('click', () => {
+      if (!recognition) return;
+      if (recognizing) {
+        recognition.stop();
+        return;
+      }
+      document.getElementById('newTask').value = '';
+      try {
+        recognition.start();
+      } catch (e) {
+        // already-started errors etc — ignore
+      }
+    });
+  }
+  setupVoiceInput();
+
+  document.getElementById('clearBtn').addEventListener('click', clearCompleted);
+  document.getElementById('archiveBtn').addEventListener('click', archiveAction);
+  document.getElementById('newListBtn').addEventListener('click', openNewListForm);
+  document.getElementById('backupBtn').addEventListener('click', shareBackup);
+  document.getElementById('restoreBtn').addEventListener('click', triggerRestore);
+  document.getElementById('restoreFile').addEventListener('change', handleRestoreFile);
+  document.getElementById('cancelNewListBtn').addEventListener('click', closeNewListForm);
+  document.getElementById('confirmNewListBtn').addEventListener('click', confirmCreateList);
+  document.getElementById('newListNameInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') confirmCreateList();
+  });
+  document.querySelectorAll('.typebtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.typebtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pendingListType = btn.dataset.type;
+    });
+  });
+
+  // Init
+  state = loadState();
+  performRollover();
+  persist();
+  render();
+
+  (async () => {
+    try {
+      if (window.claude && window.claude.use) {
+        artifact = await window.claude.use('artifact');
+      }
+    } catch (e) {
+      artifact = null;
+    }
+  })();
+</script>
+<script type="application/json" id="embedded-state">{}</script>
+</body>
+</html>
