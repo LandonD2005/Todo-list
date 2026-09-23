@@ -215,10 +215,10 @@
   .listbar-wrap {
     position: relative;
   }
-  .theme-icon-btn,
   .settings-icon-btn {
     position: absolute;
     top: 8px;
+    right: 34px;
     width: 26px;
     height: 26px;
     padding: 0;
@@ -232,11 +232,7 @@
     border-radius: 6px;
     z-index: 2;
   }
-  .theme-icon-btn { right: 34px; }
-  .settings-icon-btn { right: 64px; }
-  .theme-icon-btn svg,
   .settings-icon-btn svg { width: 15px; height: 15px; }
-  .theme-icon-btn:active,
   .settings-icon-btn:active { background: var(--accent-weak); color: var(--accent); }
 
   .theme-panel {
@@ -259,6 +255,11 @@
     color: var(--muted);
     margin: 0 0 10px;
     line-height: 1.4;
+  }
+  .settings-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 4px 0 16px;
   }
   .theme-row {
     display: flex;
@@ -455,30 +456,6 @@
     flex-shrink: 0;
     min-height: 46px;
   }
-  .micbtn {
-    background: var(--card) !important;
-    color: var(--text) !important;
-    border: 1px solid var(--border) !important;
-    width: 46px;
-    padding: 0 !important;
-    font-size: 1.15rem !important;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .micbtn svg { width: 19px; height: 19px; }
-  .micbtn.listening {
-    background: #d64545 !important;
-    border-color: #d64545 !important;
-    color: white !important;
-    animation: micpulse 1.2s ease-in-out infinite;
-  }
-  @keyframes micpulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(214, 69, 69, 0.5); }
-    50% { box-shadow: 0 0 0 8px rgba(214, 69, 69, 0); }
-  }
-
   li.task-item { padding: 0; display: block; overflow: hidden; }
   .taskmain {
     display: flex;
@@ -714,13 +691,13 @@
         <div class="typechoice" id="typeChoice">
           <button type="button" class="typebtn active" data-type="daily">
             <span class="ticon">📅</span>
-            <span class="tname">Daily</span>
-            <span class="tsub">By date, rolls forward</span>
+            <span class="tname" id="typeDailyName">Daily</span>
+            <span class="tsub" id="typeDailySub">By date, rolls forward</span>
           </button>
           <button type="button" class="typebtn" data-type="project">
             <span class="ticon">📋</span>
-            <span class="tname">Project</span>
-            <span class="tsub">Ongoing list, no dates</span>
+            <span class="tname" id="typeProjectName">Project</span>
+            <span class="tsub" id="typeProjectSub">Ongoing list, no dates</span>
           </button>
         </div>
         <div class="formrow">
@@ -729,47 +706,59 @@
         </div>
       </div>
     </details>
-    <button class="settings-icon-btn" id="settingsToggleBtn" aria-label="Backup and restore" title="Backup / Restore">
+    <button class="settings-icon-btn" id="settingsToggleBtn" aria-label="Settings" title="Settings">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="3"></circle>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
       </svg>
     </button>
-    <button class="theme-icon-btn" id="themeToggleBtn" aria-label="Theme settings" title="Theme">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.8-.5-1.4 0-1.1.9-2 2-2h2.4c2.3 0 4.1-1.8 4.1-4.1C21.5 6 17.2 2 12 2z"></path>
-        <circle cx="6.5" cy="11.5" r="1.2" fill="currentColor" stroke="none"></circle>
-        <circle cx="9.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"></circle>
-        <circle cx="14.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"></circle>
-        <circle cx="17.5" cy="11.5" r="1.2" fill="currentColor" stroke="none"></circle>
-      </svg>
-    </button>
   </div>
 
   <div class="theme-panel" id="settingsPanel">
-    <div class="settings-label">Backup &amp; Restore</div>
-    <p class="settings-hint">Your list already saves automatically on this device. This is just an optional copy you can keep or move to another device.</p>
-    <div class="backuprow">
-      <button class="backupbtn" id="backupBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> Backup</button>
-      <button class="backupbtn" id="restoreBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Restore</button>
-      <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
-    </div>
-  </div>
+    <div class="settings-label" id="lblShareThisList">Share this list</div>
+    <p class="settings-hint" id="hintShare">Send just the list you're currently viewing to someone else. They can add it alongside their own lists — nothing of theirs gets replaced.</p>
+    <button class="backupbtn" id="shareListBtn" style="width:100%; margin-bottom:16px;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> <span id="shareListBtnText">Share this list</span></button>
 
-  <div class="theme-panel" id="themePanel">
+    <div class="settings-divider"></div>
+
+    <div class="settings-label" id="lblTheme">Theme</div>
+    <p class="settings-hint" id="hintTheme">Customize the colors, or leave it to automatically follow your phone's light/dark setting.</p>
     <div class="theme-row">
-      <label for="themeAccent">Buttons</label>
+      <label for="themeAccent" id="lblButtons">Buttons</label>
       <input type="color" id="themeAccent">
     </div>
     <div class="theme-row">
-      <label for="themeText">Text</label>
+      <label for="themeText" id="lblText">Text</label>
       <input type="color" id="themeText">
     </div>
     <div class="theme-row">
-      <label for="themeBg">Background</label>
+      <label for="themeBg" id="lblBackground">Background</label>
       <input type="color" id="themeBg">
     </div>
     <button class="resetthemebtn" id="resetThemeBtn">Reset to automatic (light/dark)</button>
+
+    <div class="settings-divider"></div>
+
+    <div class="settings-label" id="lblLanguage">Language</div>
+    <p class="settings-hint" id="hintLanguage">Only affects what you see on this device — sharing or backing up a list never changes anyone else's language.</p>
+    <div class="typechoice" id="langChoice">
+      <button type="button" class="typebtn langbtn" data-lang="en">
+        <span class="tname">English</span>
+      </button>
+      <button type="button" class="typebtn langbtn" data-lang="es">
+        <span class="tname">Español</span>
+      </button>
+    </div>
+
+    <div class="settings-divider"></div>
+
+    <div class="settings-label" id="lblBackupRestore">Backup &amp; Restore (everything)</div>
+    <p class="settings-hint" id="hintBackup">A full copy of every list, for moving your whole app to another device. Restoring replaces everything currently here — use "Share this list" above instead if you just want to send one list to someone.</p>
+    <div class="backuprow">
+      <button class="backupbtn" id="backupBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> <span id="backupBtnText">Backup</span></button>
+      <button class="backupbtn" id="restoreBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> <span id="restoreBtnText">Restore</span></button>
+      <input type="file" id="restoreFile" accept="application/json,.json" style="display:none;">
+    </div>
   </div>
 
   <div class="daynav">
@@ -798,7 +787,7 @@
     <div id="archiveList"></div>
   </details>
 
-  <footer>Tap a box to check it off · × deletes a task</footer>
+  <footer id="footerText">Tap a box to check it off · × deletes a task</footer>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -816,7 +805,6 @@
 <div class="addbar">
   <div class="addbar-inner">
     <input type="text" id="newTask" placeholder="Add a task for this day…" maxlength="200" enterkeyhint="done">
-    <button id="micBtn" class="micbtn" style="display:none;" aria-label="Add task by voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg></button>
     <button id="addBtn">Add</button>
   </div>
 </div>
@@ -829,13 +817,133 @@
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
 
+  // --- Language ---
+  // Stored separately from `state` on purpose: this is a personal device
+  // preference, never part of a list's data, so sharing/backing up/restoring
+  // a list never changes (or is changed by) anyone's language.
+  const LANG_KEY = 'todo-lang-pref';
+  const LOCALE_MAP = { en: 'en-US', es: 'es-ES' };
+  let currentLang = 'en';
+
+  const translations = {
+    en: {
+      newList: '+ New list', listNamePlaceholder: 'List name',
+      daily: 'Daily', dailySub: 'By date, rolls forward',
+      project: 'Project', projectSub: 'Ongoing list, no dates',
+      cancel: 'Cancel', createList: 'Create list',
+      shareThisList: 'Share this list',
+      shareHint: "Send just the list you're currently viewing to someone else. They can add it alongside their own lists — nothing of theirs gets replaced.",
+      theme: 'Theme',
+      themeHint: "Customize the colors, or leave it to automatically follow your phone's light/dark setting.",
+      buttonsLabel: 'Buttons', textLabel: 'Text', backgroundLabel: 'Background',
+      resetTheme: 'Reset to automatic (light/dark)',
+      language: 'Language',
+      languageHint: "Only affects what you see on this device — sharing or backing up a list never changes anyone else's language.",
+      backupRestoreHeading: 'Backup & Restore (everything)',
+      backupHint: 'A full copy of every list, for moving your whole app to another device. Restoring replaces everything currently here — use "Share this list" above instead if you just want to send one list to someone.',
+      backup: 'Backup', restore: 'Restore',
+      today: 'Today',
+      addTaskDay: 'Add a task for this day…', addTaskList: 'Add a task to this list…',
+      add: 'Add',
+      emptyMsg: 'Nothing here yet — add a task above.',
+      clearCompleted: 'Clear completed',
+      archiveDay: 'Archive this day', archiveCompleted: 'Archive completed',
+      archivedDays: 'Archived days', archivedTasks: 'Archived tasks',
+      nothingArchived: 'Nothing archived yet.',
+      deleteLabel: 'Delete', deleteAll: 'Delete all',
+      addSubtaskPlaceholder: 'Add subtask…',
+      subtasksLabel: 'subtasks',
+      carriedFrom: 'carried from',
+      replacePhoto: 'Replace photo', removePhoto: 'Remove photo',
+      footer: 'Tap a box to check it off · × deletes a task',
+      projectBadge: 'project',
+      contrastText: 'text', contrastBackground: 'background',
+      contrastAlert: (which) => `That color is too close to your ${which} color — you wouldn't be able to read anything. Pick something more different.`,
+      photoAttachError: "Couldn't attach that photo.",
+      archiveCompletedConfirm: (n) => `Archive ${n} completed task(s)? They'll move to Archived tasks.`,
+      archiveDayConfirm: (n) => `Archive all ${n} task(s) for this day? They'll move to Archived days and clear from the active list.`,
+      deleteArchivedDayConfirm: 'Permanently delete this archived day? This cannot be undone.',
+      deleteAllArchivedConfirm: 'Permanently delete all archived tasks for this list? This cannot be undone.',
+      renamePrompt: 'Rename list:',
+      deleteListConfirm: (name) => `Permanently delete "${name}" and all its tasks? This cannot be undone.`,
+      shareFailed: 'Could not share this list: ',
+      backupFailed: 'Backup failed: ',
+      importConfirm: (name) => `Add "${name}" as a new list? This won't affect your other lists.`,
+      invalidFile: "That file doesn't look like a valid backup or shared list.",
+      restoreConfirm: 'Restore this backup? It will replace everything currently in the app on this device.',
+      couldNotRead: 'Could not read that file: ',
+    },
+    es: {
+      newList: '+ Nueva lista', listNamePlaceholder: 'Nombre de la lista',
+      daily: 'Diaria', dailySub: 'Por fecha, se traslada al día siguiente',
+      project: 'Proyecto', projectSub: 'Lista continua, sin fechas',
+      cancel: 'Cancelar', createList: 'Crear lista',
+      shareThisList: 'Compartir esta lista',
+      shareHint: 'Envía solo la lista que estás viendo a otra persona. Podrá añadirla junto a sus propias listas — nada de lo suyo se reemplaza.',
+      theme: 'Tema',
+      themeHint: 'Personaliza los colores, o déjalo para que siga automáticamente el modo claro/oscuro de tu teléfono.',
+      buttonsLabel: 'Botones', textLabel: 'Texto', backgroundLabel: 'Fondo',
+      resetTheme: 'Restablecer a automático (claro/oscuro)',
+      language: 'Idioma',
+      languageHint: 'Solo afecta lo que ves en este dispositivo — compartir o respaldar una lista nunca cambia el idioma de otra persona.',
+      backupRestoreHeading: 'Copia de seguridad y restauración (todo)',
+      backupHint: 'Una copia completa de cada lista, para mover toda tu app a otro dispositivo. Restaurar reemplaza todo lo que hay aquí — usa "Compartir esta lista" arriba si solo quieres enviar una lista a alguien.',
+      backup: 'Copia de seguridad', restore: 'Restaurar',
+      today: 'Hoy',
+      addTaskDay: 'Agregar una tarea para este día…', addTaskList: 'Agregar una tarea a esta lista…',
+      add: 'Agregar',
+      emptyMsg: 'Nada por aquí todavía — agrega una tarea arriba.',
+      clearCompleted: 'Borrar completadas',
+      archiveDay: 'Archivar este día', archiveCompleted: 'Archivar completadas',
+      archivedDays: 'Días archivados', archivedTasks: 'Tareas archivadas',
+      nothingArchived: 'Nada archivado todavía.',
+      deleteLabel: 'Eliminar', deleteAll: 'Eliminar todo',
+      addSubtaskPlaceholder: 'Agregar subtarea…',
+      subtasksLabel: 'subtareas',
+      carriedFrom: 'trasladado de',
+      replacePhoto: 'Reemplazar foto', removePhoto: 'Quitar foto',
+      footer: 'Toca una casilla para marcarla · × elimina una tarea',
+      projectBadge: 'proyecto',
+      contrastText: 'texto', contrastBackground: 'fondo',
+      contrastAlert: (which) => `Ese color es demasiado parecido a tu color de ${which} — no podrías leer nada. Elige algo más diferente.`,
+      photoAttachError: 'No se pudo adjuntar esa foto.',
+      archiveCompletedConfirm: (n) => `¿Archivar ${n} tarea(s) completada(s)? Se moverán a Tareas archivadas.`,
+      archiveDayConfirm: (n) => `¿Archivar las ${n} tarea(s) de este día? Se moverán a Días archivados y se borrarán de la lista activa.`,
+      deleteArchivedDayConfirm: '¿Eliminar permanentemente este día archivado? Esto no se puede deshacer.',
+      deleteAllArchivedConfirm: '¿Eliminar permanentemente todas las tareas archivadas de esta lista? Esto no se puede deshacer.',
+      renamePrompt: 'Renombrar lista:',
+      deleteListConfirm: (name) => `¿Eliminar permanentemente "${name}" y todas sus tareas? Esto no se puede deshacer.`,
+      shareFailed: 'No se pudo compartir esta lista: ',
+      backupFailed: 'Copia de seguridad fallida: ',
+      importConfirm: (name) => `¿Agregar "${name}" como una nueva lista? Esto no afectará tus otras listas.`,
+      invalidFile: 'Ese archivo no parece ser una copia de seguridad o lista compartida válida.',
+      restoreConfirm: 'Restaurar esta copia de seguridad? Reemplazará todo lo que hay actualmente en la app en este dispositivo.',
+      couldNotRead: 'No se pudo leer ese archivo: ',
+    }
+  };
+
+  function t(key, ...args) {
+    const dict = translations[currentLang] || translations.en;
+    const val = (key in dict) ? dict[key] : translations.en[key];
+    return typeof val === 'function' ? val(...args) : val;
+  }
+
+  function loadLanguage() {
+    try {
+      const saved = localStorage.getItem(LANG_KEY);
+      if (saved && translations[saved]) currentLang = saved;
+    } catch (e) {}
+  }
+
   function fmtLabel(dateStr) {
     const [y, m, d] = dateStr.split('-').map(Number);
     const dt = new Date(y, m - 1, d);
-    const weekday = dt.toLocaleDateString(undefined, { weekday: 'long' });
-    const rest = dt.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+    const locale = LOCALE_MAP[currentLang] || 'en-US';
+    const weekday = dt.toLocaleDateString(locale, { weekday: 'long' });
+    const rest = dt.toLocaleDateString(locale, { month: 'long', day: 'numeric', year: 'numeric' });
     return { weekday, rest };
   }
+
 
   function addDays(dateStr, delta) {
     const [y, m, d] = dateStr.split('-').map(Number);
@@ -944,6 +1052,34 @@
     return '#000000';
   }
 
+  function hexToRgb(hex) {
+    hex = (hex || '#000000').replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+    const num = parseInt(hex, 16) || 0;
+    return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+  }
+
+  function relativeLuminance({ r, g, b }) {
+    const [rs, gs, bs] = [r, g, b].map(v => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+  }
+
+  function contrastRatio(hexA, hexB) {
+    const L1 = relativeLuminance(hexToRgb(hexA));
+    const L2 = relativeLuminance(hexToRgb(hexB));
+    const lighter = Math.max(L1, L2);
+    const darker = Math.min(L1, L2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  // Below this, text becomes genuinely unreadable against the background
+  // (identical or near-identical colors). This isn't full WCAG AA
+  // enforcement (4.5:1) — just a hard floor against "you can't see anything."
+  const MIN_READABLE_CONTRAST = 1.6;
+
   function applyTheme() {
     const root = document.documentElement;
     const theme = state.theme;
@@ -971,6 +1107,20 @@
   }
 
   function setThemeColor(key, value) {
+    // If this change affects text or background, make sure the resulting
+    // pair is still readable before applying it.
+    if (key === 'text' || key === 'bg') {
+      const cs = getComputedStyle(document.documentElement);
+      const currentText = (state.theme && state.theme.text) || hexFromComputed(cs.getPropertyValue('--text'));
+      const currentBg = (state.theme && state.theme.bg) || hexFromComputed(cs.getPropertyValue('--bg'));
+      const nextText = key === 'text' ? value : currentText;
+      const nextBg = key === 'bg' ? value : currentBg;
+      if (contrastRatio(nextText, nextBg) < MIN_READABLE_CONTRAST) {
+        alert(t('contrastAlert', key === 'text' ? t('contrastBackground') : t('contrastText')));
+        syncThemeInputs(); // snap the picker back to the last valid color
+        return;
+      }
+    }
     if (!state.theme) state.theme = {};
     state.theme[key] = value;
     applyTheme();
@@ -982,6 +1132,56 @@
     applyTheme();
     syncThemeInputs();
     persist();
+  }
+
+  function applyLanguage() {
+    document.documentElement.lang = currentLang;
+
+    document.getElementById('newListBtn').textContent = t('newList');
+    document.getElementById('newListNameInput').placeholder = t('listNamePlaceholder');
+    document.getElementById('typeDailyName').textContent = t('daily');
+    document.getElementById('typeDailySub').textContent = t('dailySub');
+    document.getElementById('typeProjectName').textContent = t('project');
+    document.getElementById('typeProjectSub').textContent = t('projectSub');
+    document.getElementById('cancelNewListBtn').textContent = t('cancel');
+    document.getElementById('confirmNewListBtn').textContent = t('createList');
+
+    document.getElementById('lblShareThisList').textContent = t('shareThisList');
+    document.getElementById('hintShare').textContent = t('shareHint');
+    document.getElementById('shareListBtnText').textContent = t('shareThisList');
+
+    document.getElementById('lblTheme').textContent = t('theme');
+    document.getElementById('hintTheme').textContent = t('themeHint');
+    document.getElementById('lblButtons').textContent = t('buttonsLabel');
+    document.getElementById('lblText').textContent = t('textLabel');
+    document.getElementById('lblBackground').textContent = t('backgroundLabel');
+    document.getElementById('resetThemeBtn').textContent = t('resetTheme');
+
+    document.getElementById('lblLanguage').textContent = t('language');
+    document.getElementById('hintLanguage').textContent = t('languageHint');
+    document.querySelectorAll('.langbtn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+
+    document.getElementById('lblBackupRestore').textContent = t('backupRestoreHeading');
+    document.getElementById('hintBackup').textContent = t('backupHint');
+    document.getElementById('backupBtnText').textContent = t('backup');
+    document.getElementById('restoreBtnText').textContent = t('restore');
+
+    document.getElementById('todayBtn').textContent = t('today');
+    document.getElementById('emptyMsg').textContent = t('emptyMsg');
+    document.getElementById('clearBtn').textContent = t('clearCompleted');
+    document.getElementById('footerText').textContent = t('footer');
+    document.getElementById('lightboxReplace').textContent = t('replacePhoto');
+    document.getElementById('lightboxRemove').textContent = t('removePhoto');
+  }
+
+  function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+    applyLanguage();
+    render();
   }
 
   // --- Photo attachments (tasks and subtasks) ---
@@ -1053,7 +1253,7 @@
       render();
       persist();
     }).catch(err => {
-      alert(err.message || "Couldn't attach that photo.");
+      alert(err.message || t('photoAttachError'));
     });
   }
 
@@ -1158,7 +1358,7 @@
       document.getElementById('dayLabel').innerHTML = `${weekday}<span class="sub">${rest}</span>`;
     }
 
-    document.getElementById('newTask').placeholder = isProject ? 'Add a task to this list…' : 'Add a task for this day…';
+    document.getElementById('newTask').placeholder = isProject ? t('addTaskList') : t('addTaskDay');
 
     // Active tasks
     const tasks = getActiveTasks();
@@ -1192,7 +1392,7 @@
           const note = document.createElement('span');
           note.className = 'carried';
           const { weekday, rest } = fmtLabel(item.carriedFrom);
-          note.textContent = `carried from ${weekday.slice(0, 3)}, ${rest}`;
+          note.textContent = `${t('carriedFrom')} ${weekday.slice(0, 3)}, ${rest}`;
           label.appendChild(document.createElement('br'));
           label.appendChild(note);
         }
@@ -1204,7 +1404,7 @@
           const subDone = subtasks.filter(s => s.done).length;
           const toggle = document.createElement('button');
           toggle.className = 'subtoggle' + (isExpanded ? ' open' : '');
-          toggle.innerHTML = `<span class="arrow">▸</span> ${subDone}/${subtasks.length} subtasks`;
+          toggle.innerHTML = `<span class="arrow">▸</span> ${subDone}/${subtasks.length} ${t('subtasksLabel')}`;
           toggle.addEventListener('click', (e) => { e.stopPropagation(); toggleExpand(item.id); });
           label.appendChild(document.createElement('br'));
           label.appendChild(toggle);
@@ -1290,7 +1490,7 @@
           addRow.className = 'addsub-row';
           const addInput = document.createElement('input');
           addInput.type = 'text';
-          addInput.placeholder = 'Add subtask…';
+          addInput.placeholder = t('addSubtaskPlaceholder');
           addInput.maxLength = 200;
           addInput.setAttribute('data-parent', item.id);
           addInput.addEventListener('keydown', (e) => {
@@ -1323,7 +1523,7 @@
     document.getElementById('fill').style.width = (tasks.length ? (doneCount / tasks.length * 100) : 0) + '%';
 
     document.getElementById('clearBtn').disabled = doneCount === 0;
-    document.getElementById('archiveBtn').textContent = isProject ? 'Archive completed' : 'Archive this day';
+    document.getElementById('archiveBtn').textContent = isProject ? t('archiveCompleted') : t('archiveDay');
     document.getElementById('archiveBtn').disabled = isProject ? doneCount === 0 : tasks.length === 0;
 
     renderArchiveSection();
@@ -1349,7 +1549,7 @@
       if (l.type === 'project') {
         const badge = document.createElement('span');
         badge.className = 'badge';
-        badge.textContent = 'project';
+        badge.textContent = t('projectBadge');
         row.appendChild(badge);
       }
       const renameBtn = document.createElement('button');
@@ -1386,9 +1586,9 @@
     const archiveList = document.getElementById('archiveList');
     const archive = list.archive || {};
     const dates = Object.keys(archive).sort().reverse();
-    document.getElementById('archiveSummary').textContent = `Archived days${dates.length ? ' (' + dates.length + ')' : ''}`;
+    document.getElementById('archiveSummary').textContent = `${t('archivedDays')}${dates.length ? ' (' + dates.length + ')' : ''}`;
     if (dates.length === 0) {
-      archiveList.innerHTML = '<div class="archive-empty">Nothing archived yet.</div>';
+      archiveList.innerHTML = `<div class="archive-empty">${t('nothingArchived')}</div>`;
       return;
     }
     archiveList.innerHTML = '';
@@ -1401,7 +1601,7 @@
       head.className = 'adhead';
       head.innerHTML = `<span>${weekday}, ${rest}</span>`;
       const delBtn = document.createElement('button');
-      delBtn.textContent = 'Delete';
+      delBtn.textContent = t('deleteLabel');
       delBtn.addEventListener('click', () => deleteArchivedDay(dateStr));
       head.appendChild(delBtn);
       const ul = document.createElement('ul');
@@ -1427,9 +1627,9 @@
   function renderProjectArchive(list) {
     const archiveList = document.getElementById('archiveList');
     const archived = list.archivedTasks || [];
-    document.getElementById('archiveSummary').textContent = `Archived tasks${archived.length ? ' (' + archived.length + ')' : ''}`;
+    document.getElementById('archiveSummary').textContent = `${t('archivedTasks')}${archived.length ? ' (' + archived.length + ')' : ''}`;
     if (archived.length === 0) {
-      archiveList.innerHTML = '<div class="archive-empty">Nothing archived yet.</div>';
+      archiveList.innerHTML = `<div class="archive-empty">${t('nothingArchived')}</div>`;
       return;
     }
     archiveList.innerHTML = '';
@@ -1437,9 +1637,9 @@
     wrap.className = 'archive-day';
     const head = document.createElement('div');
     head.className = 'adhead';
-    head.innerHTML = `<span>${archived.length} archived task${archived.length === 1 ? '' : 's'}</span>`;
+    head.innerHTML = `<span>${archived.length} ${t('archivedTasks').toLowerCase()}</span>`;
     const delBtn = document.createElement('button');
-    delBtn.textContent = 'Delete all';
+    delBtn.textContent = t('deleteAll');
     delBtn.addEventListener('click', () => deleteAllArchivedTasks());
     head.appendChild(delBtn);
     const ul = document.createElement('ul');
@@ -1575,13 +1775,13 @@
     if (list.type === 'project') {
       const completed = tasks.filter(t => t.done);
       if (completed.length === 0) return;
-      if (!confirm(`Archive ${completed.length} completed task(s)? They'll move to Archived tasks.`)) return;
+      if (!confirm(t('archiveCompletedConfirm', completed.length))) return;
       if (!list.archivedTasks) list.archivedTasks = [];
       list.archivedTasks = list.archivedTasks.concat(completed);
       list.tasks = tasks.filter(t => !t.done);
     } else {
       if (tasks.length === 0) return;
-      if (!confirm(`Archive all ${tasks.length} task(s) for this day? They'll move to Archived days and clear from the active list.`)) return;
+      if (!confirm(t('archiveDayConfirm', tasks.length))) return;
       const existing = list.archive[current] || [];
       list.archive[current] = existing.concat(tasks);
       list.days[current] = [];
@@ -1591,14 +1791,14 @@
   }
 
   function deleteArchivedDay(dateStr) {
-    if (!confirm('Permanently delete this archived day? This cannot be undone.')) return;
+    if (!confirm(t('deleteArchivedDayConfirm'))) return;
     delete currentList().archive[dateStr];
     render();
     persist();
   }
 
   function deleteAllArchivedTasks() {
-    if (!confirm('Permanently delete all archived tasks for this list? This cannot be undone.')) return;
+    if (!confirm(t('deleteAllArchivedConfirm'))) return;
     currentList().archivedTasks = [];
     render();
     persist();
@@ -1657,7 +1857,7 @@
   function renameList(id) {
     const list = state.lists[id];
     if (!list) return;
-    const name = prompt('Rename list:', list.name);
+    const name = prompt(t('renamePrompt'), list.name);
     if (name === null) return;
     const trimmed = name.trim();
     if (!trimmed) return;
@@ -1670,11 +1870,63 @@
     const ids = Object.keys(state.lists);
     if (ids.length <= 1) return;
     const list = state.lists[id];
-    if (!confirm(`Permanently delete "${list.name}" and all its tasks? This cannot be undone.`)) return;
+    if (!confirm(t('deleteListConfirm', list.name))) return;
     delete state.lists[id];
     if (state.currentListId === id) {
       state.currentListId = Object.keys(state.lists)[0];
     }
+    render();
+    persist();
+  }
+
+  function slugify(name) {
+    return (name || 'list').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'list';
+  }
+
+  async function shareCurrentList() {
+    const list = currentList();
+    const payload = { type: 'todo-shared-list', version: 1, list: JSON.parse(JSON.stringify(list)) };
+    const json = JSON.stringify(payload, null, 2);
+    const filename = `todo-list-${slugify(list.name)}.json`;
+    try {
+      const blob = new Blob([json], { type: 'application/json' });
+      const file = new File([blob], filename, { type: 'application/json' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: list.name });
+        return;
+      }
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+    }
+    try {
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) {
+      alert(t('shareFailed') + e.message);
+    }
+  }
+
+  function uniqueListName(name) {
+    const base = name || 'Imported list';
+    const existing = new Set(Object.values(state.lists).map(l => l.name));
+    if (!existing.has(base)) return base;
+    let i = 2;
+    while (existing.has(`${base} (${i})`)) i++;
+    return `${base} (${i})`;
+  }
+
+  function importSharedList(importedList) {
+    const id = newListId();
+    const name = uniqueListName(importedList.name);
+    state.lists[id] = Object.assign({}, importedList, { name });
+    state.currentListId = id;
     render();
     persist();
   }
@@ -1692,7 +1944,7 @@
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (e) {
-      alert('Backup failed: ' + e.message);
+      alert(t('backupFailed') + e.message);
     }
   }
 
@@ -1727,17 +1979,26 @@
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const parsed = migrateIfNeeded(JSON.parse(reader.result));
-        if (!parsed || !parsed.lists) {
-          alert("That file doesn't look like a valid backup.");
+        const parsed = JSON.parse(reader.result);
+
+        if (parsed && parsed.type === 'todo-shared-list' && parsed.list && typeof parsed.list === 'object') {
+          const incomingName = parsed.list.name || 'Imported list';
+          if (!confirm(t('importConfirm', incomingName))) return;
+          importSharedList(parsed.list);
           return;
         }
-        if (!confirm('Restore this backup? It will replace everything currently in the app on this device.')) return;
-        state = parsed;
+
+        const migrated = migrateIfNeeded(parsed);
+        if (!migrated || !migrated.lists) {
+          alert(t('invalidFile'));
+          return;
+        }
+        if (!confirm(t('restoreConfirm'))) return;
+        state = migrated;
         render();
         persist();
       } catch (err) {
-        alert('Could not read that file: ' + err.message);
+        alert(t('couldNotRead') + err.message);
       }
     };
     reader.readAsText(file);
@@ -1771,64 +2032,10 @@
     }
   });
 
-  // Voice-to-text for adding tasks (Web Speech API). Only shown if the
-  // browser actually supports it — Safari support varies, especially when
-  // running as a home-screen app, so this fails quietly rather than showing
-  // a button that doesn't work.
-  let recognition = null;
-  let recognizing = false;
-
-  function setupVoiceInput() {
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const micBtn = document.getElementById('micBtn');
-    if (!SR || !micBtn) return;
-
-    micBtn.style.display = 'flex';
-    recognition = new SR();
-    recognition.continuous = false;
-    recognition.interimResults = true;
-    try { recognition.lang = navigator.language || 'en-US'; } catch (e) {}
-
-    recognition.onstart = () => {
-      recognizing = true;
-      micBtn.classList.add('listening');
-    };
-    recognition.onresult = (e) => {
-      let transcript = '';
-      for (let i = 0; i < e.results.length; i++) {
-        transcript += e.results[i][0].transcript;
-      }
-      document.getElementById('newTask').value = transcript;
-    };
-    recognition.onerror = () => {
-      recognizing = false;
-      micBtn.classList.remove('listening');
-    };
-    recognition.onend = () => {
-      recognizing = false;
-      micBtn.classList.remove('listening');
-      document.getElementById('newTask').focus();
-    };
-
-    micBtn.addEventListener('click', () => {
-      if (!recognition) return;
-      if (recognizing) {
-        recognition.stop();
-        return;
-      }
-      document.getElementById('newTask').value = '';
-      try {
-        recognition.start();
-      } catch (e) {
-        // already-started errors etc — ignore
-      }
-    });
-  }
-  setupVoiceInput();
-
   document.getElementById('clearBtn').addEventListener('click', clearCompleted);
   document.getElementById('archiveBtn').addEventListener('click', archiveAction);
   document.getElementById('newListBtn').addEventListener('click', openNewListForm);
+  document.getElementById('shareListBtn').addEventListener('click', shareCurrentList);
   document.getElementById('backupBtn').addEventListener('click', shareBackup);
   document.getElementById('restoreBtn').addEventListener('click', triggerRestore);
   document.getElementById('restoreFile').addEventListener('change', handleRestoreFile);
@@ -1845,17 +2052,15 @@
     });
   });
 
-  document.getElementById('themeAccent').addEventListener('input', (e) => setThemeColor('accent', e.target.value));
-  document.getElementById('themeText').addEventListener('input', (e) => setThemeColor('text', e.target.value));
-  document.getElementById('themeBg').addEventListener('input', (e) => setThemeColor('bg', e.target.value));
+  document.getElementById('themeAccent').addEventListener('change', (e) => setThemeColor('accent', e.target.value));
+  document.getElementById('themeText').addEventListener('change', (e) => setThemeColor('text', e.target.value));
+  document.getElementById('themeBg').addEventListener('change', (e) => setThemeColor('bg', e.target.value));
   document.getElementById('resetThemeBtn').addEventListener('click', resetTheme);
-  document.getElementById('themeToggleBtn').addEventListener('click', () => {
-    document.getElementById('settingsPanel').classList.remove('show');
-    document.getElementById('themePanel').classList.toggle('show');
-  });
   document.getElementById('settingsToggleBtn').addEventListener('click', () => {
-    document.getElementById('themePanel').classList.remove('show');
     document.getElementById('settingsPanel').classList.toggle('show');
+  });
+  document.querySelectorAll('.langbtn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
   });
 
   document.getElementById('photoFileInput').addEventListener('change', handlePhotoFileChange);
@@ -1867,10 +2072,12 @@
   document.getElementById('lightboxRemove').addEventListener('click', removeLightboxPhoto);
 
   // Init
+  loadLanguage();
   state = loadState();
   performRollover();
   applyTheme();
   syncThemeInputs();
+  applyLanguage();
   persist();
   render();
 
