@@ -739,19 +739,6 @@
 
     <div class="settings-divider"></div>
 
-    <div class="settings-label" id="lblLanguage">Language</div>
-    <p class="settings-hint" id="hintLanguage">Only affects what you see on this device — sharing or backing up a list never changes anyone else's language.</p>
-    <div class="typechoice" id="langChoice">
-      <button type="button" class="typebtn langbtn" data-lang="en">
-        <span class="tname">English</span>
-      </button>
-      <button type="button" class="typebtn langbtn" data-lang="es">
-        <span class="tname">Español</span>
-      </button>
-    </div>
-
-    <div class="settings-divider"></div>
-
     <div class="settings-label" id="lblBackupRestore">Backup &amp; Restore (everything)</div>
     <p class="settings-hint" id="hintBackup">A full copy of every list, for moving your whole app to another device. Restoring replaces everything currently here — use "Share this list" above instead if you just want to send one list to someone.</p>
     <div class="backuprow">
@@ -818,10 +805,9 @@
   }
 
   // --- Language ---
-  // Stored separately from `state` on purpose: this is a personal device
-  // preference, never part of a list's data, so sharing/backing up/restoring
-  // a list never changes (or is changed by) anyone's language.
-  const LANG_KEY = 'todo-lang-pref';
+  // Detected fresh from the device's own language settings every load — not
+  // stored or remembered by this app at all, so there's nothing here that
+  // could ever travel along with a shared or backed-up list.
   const LOCALE_MAP = { en: 'en-US', es: 'es-ES' };
   let currentLang = 'en';
 
@@ -837,8 +823,6 @@
       themeHint: "Customize the colors, or leave it to automatically follow your phone's light/dark setting.",
       buttonsLabel: 'Buttons', textLabel: 'Text', backgroundLabel: 'Background',
       resetTheme: 'Reset to automatic (light/dark)',
-      language: 'Language',
-      languageHint: "Only affects what you see on this device — sharing or backing up a list never changes anyone else's language.",
       backupRestoreHeading: 'Backup & Restore (everything)',
       backupHint: 'A full copy of every list, for moving your whole app to another device. Restoring replaces everything currently here — use "Share this list" above instead if you just want to send one list to someone.',
       backup: 'Backup', restore: 'Restore',
@@ -884,8 +868,6 @@
       themeHint: 'Personaliza los colores, o déjalo para que siga automáticamente el modo claro/oscuro de tu teléfono.',
       buttonsLabel: 'Botones', textLabel: 'Texto', backgroundLabel: 'Fondo',
       resetTheme: 'Restablecer a automático (claro/oscuro)',
-      language: 'Idioma',
-      languageHint: 'Solo afecta lo que ves en este dispositivo — compartir o respaldar una lista nunca cambia el idioma de otra persona.',
       backupRestoreHeading: 'Copia de seguridad y restauración (todo)',
       backupHint: 'Una copia completa de cada lista, para mover toda tu app a otro dispositivo. Restaurar reemplaza todo lo que hay aquí — usa "Compartir esta lista" arriba si solo quieres enviar una lista a alguien.',
       backup: 'Copia de seguridad', restore: 'Restaurar',
@@ -928,11 +910,15 @@
     return typeof val === 'function' ? val(...args) : val;
   }
 
-  function loadLanguage() {
+  function detectLanguage() {
     try {
-      const saved = localStorage.getItem(LANG_KEY);
-      if (saved && translations[saved]) currentLang = saved;
+      const candidates = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (const l of candidates) {
+        const base = (l || '').toLowerCase().split('-')[0];
+        if (translations[base]) { currentLang = base; return; }
+      }
     } catch (e) {}
+    currentLang = 'en';
   }
 
   function fmtLabel(dateStr) {
@@ -1157,12 +1143,6 @@
     document.getElementById('lblBackground').textContent = t('backgroundLabel');
     document.getElementById('resetThemeBtn').textContent = t('resetTheme');
 
-    document.getElementById('lblLanguage').textContent = t('language');
-    document.getElementById('hintLanguage').textContent = t('languageHint');
-    document.querySelectorAll('.langbtn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === currentLang);
-    });
-
     document.getElementById('lblBackupRestore').textContent = t('backupRestoreHeading');
     document.getElementById('hintBackup').textContent = t('backupHint');
     document.getElementById('backupBtnText').textContent = t('backup');
@@ -1174,14 +1154,6 @@
     document.getElementById('footerText').textContent = t('footer');
     document.getElementById('lightboxReplace').textContent = t('replacePhoto');
     document.getElementById('lightboxRemove').textContent = t('removePhoto');
-  }
-
-  function setLanguage(lang) {
-    if (!translations[lang]) return;
-    currentLang = lang;
-    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
-    applyLanguage();
-    render();
   }
 
   // --- Photo attachments (tasks and subtasks) ---
@@ -2059,9 +2031,6 @@
   document.getElementById('settingsToggleBtn').addEventListener('click', () => {
     document.getElementById('settingsPanel').classList.toggle('show');
   });
-  document.querySelectorAll('.langbtn').forEach(btn => {
-    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-  });
 
   document.getElementById('photoFileInput').addEventListener('change', handlePhotoFileChange);
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
@@ -2072,7 +2041,7 @@
   document.getElementById('lightboxRemove').addEventListener('click', removeLightboxPhoto);
 
   // Init
-  loadLanguage();
+  detectLanguage();
   state = loadState();
   performRollover();
   applyTheme();
