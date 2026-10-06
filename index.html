@@ -1056,6 +1056,13 @@
   .pcard.nextup { cursor: pointer; border-color: var(--accent); display: flex; flex-direction: column; gap: 8px; }
   .nutag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); background: var(--accent-weak); border-radius: 6px; padding: 2px 6px; flex-shrink: 0; align-self: flex-start; margin-top: 1px; }
   .nutag.on { background: var(--accent); color: var(--on-accent, #fff); }
+  /* iPhone Home Screen apps can leave a sliver between fixed bottom bars and the
+     true bottom of the screen. Paint below each bottom-anchored layer so it never shows. */
+  html { background: var(--bg); }
+  .addbar { box-shadow: 0 -2px 10px rgba(0,0,0,0.06), 0 140px 0 0 var(--card); }
+  .sheet { box-shadow: 0 -6px 24px rgba(0,0,0,0.18), 0 140px 0 0 var(--bg); }
+  .overlay { box-shadow: 0 140px 0 0 var(--bg); }
+  .sheetbg.show { box-shadow: 0 140px 0 0 rgba(0,0,0,0.35); }
 </style>
 </head>
 <body>
@@ -5923,6 +5930,26 @@ ${text.slice(0, 12000)}`;
   }, 60000);
   $('tab-schedule').addEventListener('click', () => setView('schedule'));
   $('schedBg').addEventListener('click', (e) => { if (e.target.id === 'schedBg') closeSheet('schedBg'); });
+
+  // iPhone: after the keyboard closes, fixed bars can stay shifted up until the page
+  // re-lays out. Nudge it once the keyboard is gone.
+  document.addEventListener('focusout', (e) => {
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag !== 'INPUT' && tag !== 'TEXTAREA') return;
+    setTimeout(() => {
+      const a = document.activeElement;
+      if (a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA')) return;
+      window.scrollTo(window.scrollX, window.scrollY);
+    }, 120);
+  });
+  if (window.visualViewport) {
+    let lastH = window.visualViewport.height;
+    window.visualViewport.addEventListener('resize', () => {
+      const h = window.visualViewport.height;
+      if (h > lastH + 100) window.scrollTo(window.scrollX, window.scrollY);
+      lastH = h;
+    });
+  }
 
   // Init
   (async () => {
